@@ -1,0 +1,224 @@
+*{
+  font-size: 15px;
+}
+
+.body {
+  overflow: auto;
+  font-size: 25px;
+  background-color: #f8f9fa;;
+}
+
+.Width {
+  height: 15rem;
+}
+
+.light-color {
+  color: #808080;
+}
+
+.QueryLength {
+  max-width: 90%;
+  margin-top: 4rem;
+}
+
+.Middle {
+  border-radius: 0 !important;
+  height: 50px !important;
+  border-top-left-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25rem !important
+}
+
+.btn {
+  width: 6rem;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.input-group-text {
+  background-color: white !important;
+}
+
+.Card-Modify {
+  width: 10rem !important;
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.auth-inner {
+  width: 600px;
+  margin: auto;
+  background: whitesmoke;
+  padding: 40px 55px 45px 55px;
+  transition: all .3s;
+}
+
+.auth-inner-modified {
+  width: 600px;
+  margin: auto;
+  margin-top: 100px;
+  background: red;
+  padding: 40px 55px 45px 55px;
+  transition: all .3s;
+}
+
+.auth-inner-login {
+  width: 450px;
+  margin: auto;
+  margin-top: 100px;
+  background: whitesmoke;
+  padding: 40px 55px 45px 55px;
+  transition: all .3s;
+}
+
+
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
+
+.Error-message {
+  color: red;
+}
+
+.text-color {
+  color: white;
+}
+
+.margin-profile {
+  margin-top: 100px;
+}
+
+.footer-argon {
+  overflow: hidden;
+  background: black !important;
+  margin-top: 250px;
+}
+
+.section {
+  padding-bottom: 0 !important;
+}
+
+.seperator-bottom {
+  bottom: none !important;
+}
+
+.nav-button {
+  width: fit-content;
+  border-top-left-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25 !important;
+  margin-top: 5px;
+}
+
+.separator-skew {
+  height: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .email-verify {
+    min-height: 940px !important;
+}
+}
+
+@media (min-width: 768px) {
+  .card-image {
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 200px;
+  }
+}
+
+.btn {
+  width: 160px;
+  border-top-left-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25rem !important;
+}
+
+.card-location-icon {
+  width: 20px;
+  border: #167bff;
+}
+.container-box {
+  width: 100%;
+  margin-right: auto;
+  border: #167bff 2px 2px;
+  margin-left: auto;
+}
+@media (max-width: 576px){
+  .container-box {
+    max-width: 540px;
+}}
+@media (max-width: 768px){
+  .container-box {
+    max-width: 720px;
+}}
+@media (min-width: 992px){
+  .container-box {
+    max-width: 960px;
+}}
+@media (min-width: 1200px){
+  .container-box {
+    max-width: 1140px;
+}}
+@media (min-width: 1300px){
+.container-box {
+    max-width: 1240px;
+}}
+
+
+.search-box {
+  width: 50%;
+  margin-right: auto;
+  border: #167bff 2px 2px;
+  margin-left: auto;
+}
+
+@media (max-width: 576px){
+  .search-box {
+    width: 300px;
+}}
+@media (min-width: 992px){
+  .search-box {
+    width: 600px;
+}}
+
+@media (min-width: 1300px){
+.search-box {
+    width: 700px;
+}}
