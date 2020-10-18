@@ -3,171 +3,210 @@ import {
     Container, 
     Row, 
     Col, 
-    FormGroup,
     Button,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup, } from "reactstrap";
+    } from "reactstrap";
 import { connect } from 'react-redux';
+import Autosuggest from 'react-autosuggest';
 import * as actions from '../store/Actions/Actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faSearchLocation } from '@fortawesome/free-solid-svg-icons';
+import {cities, types} from './typesFilter';
+
+const getSuggestionsCity = value => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+ 
+  return inputLength === 0 ? [] : cities.filter(lang =>
+    lang.city.toLowerCase().slice(0, inputLength) === inputValue
+  );
+};
+
+const getSuggestionsType = value => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+ 
+  return inputLength === 0 ? [] : types.filter(lang =>
+    lang.type.toLowerCase().slice(0, inputLength) === inputValue
+  );
+};
+
+const getSuggestionValueCity = suggestion => suggestion.city;
+
+const getSuggestionValuetype = suggestion => suggestion.type;
+
+const renderSuggestionCity = suggestion => (
+  <div>
+    {suggestion.city}
+  </div>
+);
+
+const renderSuggestionType = suggestion => (
+  <div>
+    {suggestion.type}
+  </div>
+);
 
 class Hero extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-        formData: {}, 
-        errors: {}, 
-        formSubmitted: false, 
-        loading: false 
+      suggestionsCity: [],
+      suggestionsType: [],
+      type: '',
+      city: ''
     }
   }
 
-  handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    let { formData } = this.state;
-    formData[name] = value;
-
+  onChangeCity = (event, { newValue }) => {
     this.setState({
-        formData: formData
+      city: newValue
     });
-  }
+  };
 
+  onChangeType = (event, { newValue }) => {
+    this.setState({
+      type: newValue
+    });
+  };
+
+  onSuggestionsFetchRequestedCity = ({ value }) => {
+    this.setState({
+      suggestionsCity: getSuggestionsCity(value)
+    });
+  };
+
+  onSuggestionsFetchRequestedType = ({ value }) => {
+    this.setState({
+      suggestionsType: getSuggestionsType(value)
+    });
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestionsCity: [],
+      suggestionsType: []
+    });
+  };
+  
   Search = (e) => {
     e.preventDefault();
-    const { formData } = this.state;
-    
-    if(formData.SelectType == null){
-      alert('Please Choose Type');
-    } else if(formData.Selectcity == null){
-      alert('Please Choose City')
+    const { city, type } = this.state;
+  
+    if(city === ''){
+      alert('Please Enter City');
+    } else if(type === ''){
+      alert('Please Enter Type')
     } else {
-      var type = null;
-      var city = null;
-      if(formData.SelectType === 'Civil Contractor') {
-          type = 'CivCon';
+      var types = null;
+      var citys = null;
+      if(type === 'Civil Contractor') {
+          types = 'CivCon';
       }
-      if(formData.SelectType === 'Electric Contractor') {
-          type = 'EleCon';
+      if(type === 'Electric Contractor') {
+          types = 'EleCon';
       }
-      if(formData.SelectType === 'POP Contractor') {
-          type = 'POP';
+      if(type === 'POP Contractor') {
+          types = 'POP';
       }
-      if(formData.SelectType === 'Stone Contractor') {
-          type = 'Ston';
+      if(type === 'Stone Contractor') {
+          types = 'Ston';
       }
-      if(formData.SelectType === 'Tiles Contractor') {
-          type = 'Tile';
+      if(type === 'Tiles Contractor') {
+          types = 'Tile';
       }
-      if(formData.SelectType === 'Polishing Contractor') {
-          type = 'Pol';
+      if(type === 'Polishing Contractor') {
+          types = 'Pol';
       }
-      if(formData.SelectType === 'Woodwork Contractor') {
-          type = 'WoWo';
+      if(type === 'Woodwork Contractor') {
+          types = 'WoWo';
       }
-      if(formData.SelectType === 'False Cieling Contractor') {
-          type = 'FalCie';
+      if(type === 'False Cieling Contractor') {
+          types = 'FalCie';
       }
-      if(formData.SelectType === 'Fabrication Contractor') {
-          type = 'Fabr';
+      if(type === 'Fabrication Contractor') {
+          types = 'Fabr';
       }
-      if(formData.SelectType === 'AC Contractor') {
-          type = 'AC';
+      if(type === 'AC Contractor') {
+          types = 'AC';
       }
-      if(formData.SelectType === 'Plumbing Contractor') {
-          type = 'Plum';
+      if(type === 'Plumbing Contractor') {
+          types = 'Plum';
       }
-      if(formData.Selectcity === 'Delhi') {
-          city = 'DL'
-      } else if(formData.Selectcity === 'Noida') {
-          city = 'NO'
-      } else if(formData.Selectcity === 'Gurgaon') {
-          city = 'GR'
-      } else if(formData.Selectcity === 'Faridabad') {
-          city = 'FR'
+      if(city === 'Delhi') {
+          citys = 'DL'
+      } else if(city === 'Noida') {
+          citys = 'NO'
+      } else if(city === 'Gurgaon') {
+          citys = 'GR'
+      } else if(city === 'Faridabad') {
+          citys = 'FR'
       }
-      console.log(type, city);
       this.props.getContractorJson(city, type);
       this.props.history.push(`/contractors/${city}/${type}`); 
     }
   }
+ 
 
   render() {
+    const { city, suggestionsCity, type, suggestionsType } = this.state;
+    const inputPropsCity = {
+      placeholder: 'Type Your City',
+      value: city,
+      onChange: this.onChangeCity
+    };
+
+    const inputPropsType = {
+      placeholder: 'Search Contractors',
+      value: type,
+      onChange: this.onChangeType
+    };
+    
     return (
       <>
-        <div className="position-relative">
-          <section className="section section-hero section-shaped">
-            <div className="shape shape-style-1 shape-default">
-              <span className="span-150" />
-              <span className="span-50" />
-              <span className="span-50" />
-              <span className="span-75" />
-              <span className="span-100" />
-              <span className="span-75" />
-              <span className="span-50" />
-              <span className="span-100" />
-              <span className="span-50" />
-              <span className="span-100" />
-            </div>
+        <div className="position-relative Image">
+          <section className="section section-hero section-shaped layer">
             <Container className="shape-container d-flex align-items-center py-lg container-box">
               <div className="col px-0">
                 <Row className="align-items-center justify-content-center">
-                  <Col className="text-center" lg="9">
-                    <h2 style={{color: '#ffffff'}}>Make Your Dream Home Possible With Us!</h2>
-                    <h4 className="text-white">
-                    Find Best Contractors From Your City
-                    </h4>
+                  <Col lg="9">
+                    <h1 className="welcome" style={{marginLeft:'20px'}}>WELCOME</h1>
+                    <p className="text-white" style={{fontWeight:'500', marginLeft: '20px'}}>
+                      CREATING A BRIGHTER FUTURE, TOGETHER
+                    </p>
                     <form onSubmit={this.Search}>
                     <Row>
-                      <Col sm="3" xs="3" className="px-0 pl-3 mt-5">
-                          <InputGroup className="mb-4">
-                              <InputGroupAddon addonType="prepend">
-                                  <InputGroupText>
-                                  <i className="ni ni-building" style={{color: '#000000'}} />
-                                  </InputGroupText>
-                              </InputGroupAddon>
-                              <select className="form-control pr-3" name="Selectcity" onChange={this.handleInputChange} placeholder="Select..." data-toggle="select" data-minimum-results-for-search="Infinity">
-                                <option unselectable="off">Select City</option>
-                                <option>Delhi</option>
-                                <option>Gurgaon</option>
-                                <option>Noida</option>
-                                <option>Faridabad</option>
-                              </select>
-                          </InputGroup>
+                      <Col sm="3" xs="3" className="mt-5 mr-3">
+                        <div style={{background:'gold', width:'200px'}}>
+                          <Autosuggest
+                            id="cityselect"
+                            suggestions={suggestionsCity}
+                            onSuggestionsFetchRequested={this.onSuggestionsFetchRequestedCity}
+                            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                            getSuggestionValue={getSuggestionValueCity}
+                            renderSuggestion={renderSuggestionCity}
+                            inputProps={inputPropsCity}
+                          />
+                          <FontAwesomeIcon icon={faSearchLocation} className="icons fa-lg" style={{top:'8px',  left:'185px'}} />
+                        </div>
                       </Col>
-                      <Col sm="6" xs="9" className="px-0 pr-3">
-                        <div className="btn-wrapper mt-5">  
-                          <FormGroup>
-                              <InputGroup className="mb-4">
-                              <InputGroupAddon addonType="prepend">
-                                  <InputGroupText>
-                                  <i className="ni ni-zoom-split-in" style={{color: '#000000'}} />
-                                  </InputGroupText>
-                              </InputGroupAddon>
-                              <select className="form-control pr-3" name="SelectType" data-toggle="select" onChange={this.handleInputChange} data-minimum-results-for-search="Infinity">
-                                <option unselectable="off">Select Type</option>
-                                <option>Civil Contractor</option>
-                                <option>Electric Contractor</option>
-                                <option>POP Contractor</option>
-                                <option>Stone Contractor</option>
-                                <option>Tiles Contractor</option>
-                                <option>Polishing Contractor</option>
-                                <option>Woodwork Contractor</option>
-                                <option>False Cieling Contractor</option>
-                                <option>Fabrication Contractor</option>
-                                <option>AC Contractor</option>
-                              </select>
-                              </InputGroup>
-                          </FormGroup>
-                          </div>
+                      <Col sm="3" xs="3" className="mt-5 mx-3">
+                      <Autosuggest
+                          id="typeselect"
+                          suggestions={suggestionsType}
+                          onSuggestionsFetchRequested={this.onSuggestionsFetchRequestedType}
+                          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                          getSuggestionValue={getSuggestionValuetype}
+                          renderSuggestion={renderSuggestionType}
+                          inputProps={inputPropsType}
+                        />
+                        <i className="fas faSearch" />
+                        <FontAwesomeIcon icon={faSearch} className="icons fa-lg" style={{top:'8px', right:'0', left:'185px'}} />
                       </Col>
                       <Col sm="3" className="px-0 pr-3">
-                        <div className="text-center mt-5">
-                          <Button color="info" type="submit">
-                              Find
+                        <div className="text-center mt-5 ml-3">
+                          <Button color="info" id="submitbtn" type="submit">
+                              Submit
                           </Button>
                         </div>
                       </Col>
@@ -177,21 +216,6 @@ class Hero extends React.Component {
                 </Row>
               </div>
             </Container>
-            <div className="separator separator-bottom separator-skew zindex-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="none"
-                version="1.1"
-                viewBox="0 0 2560 100"
-                x="0"
-                y="0"
-              >
-                <polygon
-                  className="fill-white"
-                  points="2560 0 2560 100 0 100"
-                />
-              </svg>
-            </div>
           </section>
         </div>
       </>

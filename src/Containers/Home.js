@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 import * as actions from '../store/Actions/Actions';
 import Header from '../Components/Navbar';
-import Icon from '../Components/Icons';
+import HowWeWork from '../Components/HowWeWork';
 import Footer from '../Components/Footer';
 import MiddleSection from '../Components/Jumbotron';
 
@@ -23,7 +23,7 @@ class Home extends React.Component {
             <div>
                 <Header {...this.props} />
                 <MiddleSection {...this.props} />
-                <Icon />
+                <HowWeWork />
                 <Footer />
             </div>
         )

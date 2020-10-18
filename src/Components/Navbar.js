@@ -19,7 +19,8 @@ import {
     Nav,
     Container,
     Row,
-    Col
+    Col,
+    Button
   } from "reactstrap";
 
 class Header extends React.Component {
@@ -36,9 +37,8 @@ class Header extends React.Component {
         if(this.props.user) {
             var title = 'Welcome '+this.props.user.first_name;
             name = (
-                <UncontrolledDropdown>
-                    
-                    <DropdownToggle color="secondary"className="nav-button" style={{width:'auto'}} caret>
+                <UncontrolledDropdown>  
+                    <DropdownToggle color="secondary"className="nav-button loginbtn" caret>
                       {title}
                     </DropdownToggle>
                    
@@ -72,11 +72,16 @@ class Header extends React.Component {
         <Navbar
           className={navClass}
           expand="lg"
+          style={{height:'100px'}}
           id="navbar-main"
         >
           <Container>
             <NavbarBrand href="/">
-              <h3 style={{color: '#ffffff', fontWeight:'600', fontSize:'33px'}}>Apna Home</h3>
+            <img
+              alt="..."
+              src={require('../assets/img/brand/logo2.png')}
+              style={{height:'60px', width:"200px"}}
+              />
             </NavbarBrand>
             <button
               aria-controls="navbar-default"
@@ -95,7 +100,11 @@ class Header extends React.Component {
                 <Row>
                   <Col className="collapse-brand" xs="6">
                     <Link to="/">
-                      <h1>Apna Home</h1>
+                    <img
+                      alt="..."
+                      src={require('../assets/img/brand/logo2.png')}
+                      style={{height:'80px', width:"240px", background:'deepskyblue'}}
+                      />
                     </Link>
                   </Col>
                   <Col className="collapse-close" xs="6">
@@ -115,22 +124,27 @@ class Header extends React.Component {
                   </Col>
                 </Row>
               </div>
-              <Nav className="ml-lg-auto" navbar>
+              
+              <Row className="rowphone">
+                <Col lg={{ size:12, offset:7 }} className="displaychange"><h5 className="colnumber">Phone number: <a href="tel:(+91)8450949364">(+91)8450949364</a></h5></Col>
+                <Col lg={{ size:12, offset:6 }} className="displaychange">
+                  <div style={{width:'100%'}}></div>
+                <Nav navbar style={{height:'30px', marginLeft:'auto'}}>
                 <NavItem>
                   <NavLink
-                    className="nav-link-icon"
+                    className="nav-link-icon links"
                     href="/Allcontractors"
                     onClick={this.props.getContractorJson}
                   >
                       <i className="ni ni-ruler-pencil d-lg-none" />
                     <span className="nav-link-inner--text">
-                      Contractors
+                      Home
                     </span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    className="nav-link-icon"
+                    className="nav-link-icon links"
                     href="/aboutus"
                   >
                     <i className="ni ni-notification-70 d-lg-none" />
@@ -139,52 +153,55 @@ class Header extends React.Component {
                     </span>
                   </NavLink>
                 </NavItem>
-                  {
-                      this.props.isAuthenticated ?
-
-                      name
-                      :
-                      null
-                  }
+                <NavItem>
+                  <NavLink
+                    className="nav-link-icon links"
+                    href="/aboutus"
+                  >
+                    <i className="ni ni-notification-70 d-lg-none" />
+                    <span className="nav-link-inner--text">
+                      Services
+                    </span>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className="nav-link-icon links"
+                    href="/aboutus"
+                  //  style={{paddingTop:'0',paddingBottom:'0'}}
+                  >
+                    <i className="ni ni-notification-70 d-lg-none" />
+                    <span className="nav-link-inner--text">
+                      Contact Us
+                    </span>
+                  </NavLink>
+                </NavItem>
                   {
                     this.props.isAuthenticated ?
                     
-                        <NavItem>
-                          <NavLink
-                            aria-expanded={false}
-                            aria-haspopup={true}
-                            className="nav-link-icon"
-                            data-toggle="dropdown"
-                            id="navbar-default_dropdown_1"
-                            role="button"
-                            onClick={this.props.logout}
-                        >
-                            <i className="ni ni-ruler-pencil d-lg-none" />
-                            <span className="nav-link-inner--text">
-                            Logout
-                            </span>
-                        </NavLink>
-                        </NavItem>
+                    name
+
                     :
-                      <NavItem>
-                        <NavLink
-                        aria-expanded={false}
-                        aria-haspopup={true}
-                        className="nav-link-icon"
-                        data-toggle="dropdown"
-                        href="/login"
-                        id="navbar-default_dropdown_1"
-                        role="button"
-                    >
-                        <i className="ni ni-circle-08 d-lg-none" />
-                        <span className="nav-link-inner--text">
-                        Login
-                        </span>
-                    </NavLink>
-                      </NavItem>
+                      
+                        <Button
+                          aria-expanded={false}
+                          aria-haspopup={true}
+                          className="loginbtn"
+                          data-toggle="dropdown"
+                          href="/login"
+                          id="navbar-default_dropdown_1"
+                          role="button"
+                      >
+                          <i className="ni ni-circle-08 d-lg-none" />
+                          <span className="nav-link-inner--text">
+                          Log in
+                          </span>
+                        </Button>
                   }
                
               </Nav>
+              </Col>
+              </Row>
             </UncontrolledCollapse>
           </Container>
         </Navbar>
