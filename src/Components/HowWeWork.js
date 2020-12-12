@@ -1,9 +1,4 @@
 import React from 'react';
-import {
-    Container,
-    Row,
-    Col
-  } from "reactstrap";
 
 class HowWeWork extends React.Component {
 

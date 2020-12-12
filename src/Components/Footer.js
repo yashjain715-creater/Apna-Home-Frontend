@@ -116,19 +116,19 @@ class Footer extends React.Component{
                                         </div>
                                         <div className="about-links">
                                             <span>
-                                                <a href=""><img src={PinInterest} alt="PinInterest"/></a>
+                                                <a href="#"><img src={PinInterest} alt="PinInterest"/></a>
                                             </span>
                                             <span>
-                                                <a href=""><img src={Wifi} alt="PinInterest"/></a>
+                                                <a href="#"><img src={Wifi} alt="PinInterest"/></a>
                                             </span>
                                             <span>
-                                                <a href=""><img src={Instagram} alt="Instagram"/></a>
+                                                <a href="#"><img src={Instagram} alt="Instagram"/></a>
                                             </span>
                                             <span>
-                                                <a href=""><img src={Twitter} alt="Twitter"/></a>
+                                                <a href="#"><img src={Twitter} alt="Twitter"/></a>
                                             </span>
                                             <span>
-                                                <a href=""><img src={Youtube} alt="YouTube"/></a>
+                                                <a href="#"><img src={Youtube} alt="YouTube"/></a>
                                             </span>
                                         </div>
                                     </div>

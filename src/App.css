@@ -452,6 +452,13 @@ img{
 .layer {
   background-color: rgba(245, 227, 69, 0.6);
 }
+
+.layer h2{
+  text-align: center;
+  font-weight: 600;
+  padding: 2rem;
+}
+
 .black{
   color:black;
 }
@@ -463,21 +470,31 @@ img{
   margin-left: 150px;
   margin-right: 150px;
   justify-content: center;
-  padding-bottom: 40px;
+  display: flex;
+  position: relative;
+  left: 0 !important;
+  transform: translateX(0) !important;
+  padding-bottom: 80px;
 }
 .card{
-  margin-top: 30px;
+  /*margin-top: 30px;*/
   border: none !important;
+  height: 100%;
 }
 .card-text{
   text-align: center;
   font-weight: bold;
+  color: gold;
 }
 .card-footer{
   background: gold;
   text-align: center;
   font-size: 30px;
   font-weight: 500;
+}
+
+.card-body{
+  padding: 0.5rem !important;
 }
 /* .footer{
   margin: 0px 80px 0px 80px;
