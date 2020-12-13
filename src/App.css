@@ -444,13 +444,13 @@ img{
 }
 .bg{
   background: url("./images/bg.jpeg");
-  background-position: 0 0;
+  background-position: bottom;
   background-size: cover;
-  opacity: 0.8;
+  /*opacity: 0.8;*/
   height: auto;
 }
-.layer {
-  background-color: rgba(245, 227, 69, 0.6);
+.bg .layer {
+  background-color: rgba(245, 227, 69, 0.6) !important;
 }
 
 .layer h2{
