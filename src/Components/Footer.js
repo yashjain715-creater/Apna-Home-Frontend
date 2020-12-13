@@ -1,7 +1,8 @@
 import React from 'react';
+import './styles/Footer.css';
 import 'react-bootstrap';
-//import {Link} from 'react-router-dom';
 import {
+    Form,
     Button,
     NavItem,
     NavLink,
@@ -9,131 +10,136 @@ import {
     Container,
     Row,
     Col,
-    UncontrolledTooltip
   } from "reactstrap";
 import '../App.css';
+import FormGroup from "reactstrap/lib/FormGroup";
+import Label from "reactstrap/es/Label";
+import Input from "reactstrap/es/Input";
 
+import PinInterest from '../images/logos/pinterest.png';
+import Instagram from '../images/logos/instagram.png';
+import Twitter from '../images/logos/twitter.png';
+import Wifi from '../images/logos/wifi.png';
+import Youtube from '../images/logos/youtube.png';
 
 class Footer extends React.Component{
     render() {
         return(
             <>
-            <footer className="footer footer-argon" color="Primary">
-            <div className="container-box">
-                <Row className=" row-grid align-items-center mb-5">
-                <Col lg="6">
-                    <h4 className="mb-2" style={{fontWeight:'800',color:'#ffffff'}}>
-                        Types of Contractors
-                    </h4>
-                    <NavLink
-                        className="nav-link"
-                        href="/Allcontractors"
-                        onClick={console.log('hello')}
-                    >
-                        <span className="nav-link-inner--text" style={{fontSize:'20px', color:'#ffffff'}}>
-                            Civil Contractors
-                        </span>
-                    </NavLink>
-                </Col>
-                <Col className="text-lg-center btn-wrapper" lg="6">
-                    <Button
-                    className="btn-icon-only rounded-circle"
-                    color="twitter"
-                    href="https://twitter.com/creativetim"
-                    id="tooltip475038074"
-                    target="_blank"
-                    >
-                    <span className="btn-inner--icon">
-                        <i className="fa fa-twitter" />
-                    </span>
-                    </Button>
-                    <UncontrolledTooltip delay={0} target="tooltip475038074">
-                    Follow us
-                    </UncontrolledTooltip>
-                    <Button
-                    className="btn-icon-only rounded-circle ml-1"
-                    color="facebook"
-                    href="https://www.facebook.com/creativetim"
-                    id="tooltip837440414"
-                    target="_blank"
-                    >
-                    <span className="btn-inner--icon">
-                        <i className="fa fa-facebook-square" />
-                    </span>
-                    </Button>
-                    <UncontrolledTooltip delay={0} target="tooltip837440414">
-                    Like us
-                    </UncontrolledTooltip>
-                    <Button
-                    className="btn-icon-only rounded-circle ml-1"
-                    color="dribbble"
-                    href="https://dribbble.com/creativetim"
-                    id="tooltip829810202"
-                    target="_blank"
-                    >
-                    <span className="btn-inner--icon">
-                        <i className="fa fa-dribbble" />
-                    </span>
-                    </Button>
-                    <UncontrolledTooltip delay={0} target="tooltip829810202">
-                    Follow us
-                    </UncontrolledTooltip>
-                    <Button
-                    className="btn-icon-only rounded-circle ml-1"
-                    color="github"
-                    href="https://github.com/creativetimofficial"
-                    id="tooltip495507257"
-                    target="_blank"
-                    >
-                    <span className="btn-inner--icon">
-                        <i className="fa fa-github" />
-                    </span>
-                    </Button>
-                    <UncontrolledTooltip delay={0} target="tooltip495507257">
-                    Star on Github
-                    </UncontrolledTooltip>
-                </Col>
-                </Row>
-                <hr />
-                <Row className=" align-items-center justify-content-md-between">
-                <Col md="6">
-                    <div className=" copyright">
-                    © {new Date().getFullYear()}{" "}
-                    
-                    </div>
-                </Col>
-                <Col md="6">
-                    <Nav className=" nav-footer justify-content-end">
-                    <NavItem>
-                        <NavLink
-                        href="https://www.creative-tim.com?ref=adsr-footer"
-                        target="_blank"
-                        >
-                        Creative Tim
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                        href="https://www.creative-tim.com/presentation?ref=adsr-footer"
-                        target="_blank"
-                        >
-                        About Us
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                        href="http://blog.creative-tim.com?ref=adsr-footer"
-                        target="_blank"
-                        >
-                        Blog
-                        </NavLink>
-                    </NavItem>
-                    </Nav>
-                </Col>
-                </Row>
-            </div>
-            </footer>
-        </>
+                <div className="footer">
+                        <Container fluid={true}>
+                            <Row xs="1">
+                                <Col xs="2">
+                                    <div className="footerelement">
+                                        <h2>Contractors</h2>
+                                        <hr />
+                                        <Nav vertical>
+                                            <NavItem>
+                                                <NavLink href="#">Electrical</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink href="#">Civil</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink href="#">General</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink href="#">Construction</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink href="#">Domestic</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink href="#">Prime</NavLink>
+                                            </NavItem>
+                                        </Nav>
+                                    </div>
+                                </Col>
+                                <Col xs="2">
+                                    <div className="footerelement">
+                                        <h2>Company</h2>
+                                        <hr />
+                                        <Nav vertical>
+                                            <NavItem>
+                                                <NavLink href="#">About</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink href="#">Our Policy</NavLink>
+                                            </NavItem>
+                                        </Nav>
+                                    </div>
+                                    <div className="footerelement">
+                                        <h2>Support</h2>
+                                        <hr />
+                                        <Nav vertical>
+                                            <NavItem>
+                                                <NavLink href="#">Contact</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink href="#">Terms & Conditions</NavLink>
+                                            </NavItem>
+                                        </Nav>
+                                    </div>
+                                </Col>
+                                <Col xs="4">
+                                    <div className="footerelement contact-form">
+                                        <h2>Contact Form</h2>
+                                        <hr />
+                                        <Form>
+                                            <FormGroup>
+                                                <Label for="FullName">Full Name</Label>
+                                                <Input type="text" name="fullname" id="FullName" placeholder="John Doe" />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="EmailAddress">Email Address</Label>
+                                                <Input type="text" name="email" id="EmailAddress" placeholder="JohnDoe@mail.com" />
+                                            </FormGroup>
+                                            <Button className="form-submit">Submit</Button>
+                                        </Form>
+                                    </div>
+                                </Col>
+                                <Col xs="4">
+                                    <div className="footerelement about">
+                                        <h2>About Apna Home</h2>
+                                        <hr />
+                                        <div className="about-body">
+                                            <p>
+                                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+                                            </p>
+                                            <p>
+                                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                                                Lorem Ipsum Lorem Ipsum
+                                            </p>
+                                            <p>
+                                                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                                            </p>
+                                        </div>
+                                        <div className="about-links">
+                                            <span>
+                                                <a href="#"><img src={PinInterest} alt="PinInterest"/></a>
+                                            </span>
+                                            <span>
+                                                <a href="#"><img src={Wifi} alt="PinInterest"/></a>
+                                            </span>
+                                            <span>
+                                                <a href="#"><img src={Instagram} alt="Instagram"/></a>
+                                            </span>
+                                            <span>
+                                                <a href="#"><img src={Twitter} alt="Twitter"/></a>
+                                            </span>
+                                            <span>
+                                                <a href="#"><img src={Youtube} alt="YouTube"/></a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Container>
+                        <div className="footerline">
+                            &copy; CopyRight 2017 All Rights Reserved
+                        </div>
+                </div>
+            </>
         )
     }
 }
